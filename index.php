@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>comfortably numb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+    <link type="text/css" href="style.css" rel="stylesheet" />
+    <script type="text/javascript" src="script.js"></script>
+    <title>App Generator</title>
   </head>
-  <body>
-    <h1>hello</h1>
-    <h2>is there anybody in there?</h2>
-    <h3>just nod if you can hear me</h3>
-    <?php
-      exec("javac *.java");
-      $code = shell_exec("java Main");
-      echo $code;
-    ?>
+  <body onload="pageSize()" onresize="pageSize()">
+    <div id="page">
+      <div id="phone">
+      </div>
+    </div>
   </body>
 </html>
+
+<?php
+  exec("javac *.java");
+  $code = shell_exec("java Main");
+  // echo $code;
+?>
