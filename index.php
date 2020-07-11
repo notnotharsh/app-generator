@@ -10,6 +10,11 @@
     <div id="page">
       <div id="phone">
       </div>
+      <div id="square">
+        <h1>App Generator</h1>
+        <div id="settings">
+        </div>
+      </div>
     </div>
   </body>
 </html>
