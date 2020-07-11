@@ -20,7 +20,7 @@
 </html>
 
 <?php
-  exec("javac *.java");
+  exec("javac java/*.java");
   $code = shell_exec("java Main");
   // echo $code;
 ?>
