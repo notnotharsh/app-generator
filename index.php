@@ -17,7 +17,7 @@
           <?php
             exec("javac java/*.java");
             $code = shell_exec("java -cp java Main");
-            echo $code;
+            # echo $code;
           ?>
         </div>
       </div>
