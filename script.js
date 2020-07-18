@@ -9,3 +9,12 @@ function pageSize() {
     document.getElementById("page").style.height =  (4/7 * document.body.clientWidth) + "px";
   }
 }
+
+function controlTabs() {
+  var tabs = document.getElementById("tabs");
+  var length = tabs.childElementCount;
+  var percent = 100 / length;
+  for (var i = 0; i < length; i++) {
+    tabs.getElementsByClassName("tab")[i].style.height = percent.toString() + "%";
+  }
+}

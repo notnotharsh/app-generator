@@ -8,21 +8,24 @@
     <script type="text/javascript" src="script.js"></script>
     <title>App Generator</title>
   </head>
-  <body onload="pageSize()" onresize="pageSize()">
+  <body onload="pageSize(); controlTabs()" onresize="pageSize()">
     <div id="page">
       <div id="phone">
       </div>
       <div id="square">
-        <h1>Scouting App Generator</h1>
+        <h1>App Generator</h1>
         <div id="settings">
           <div id="bar">
             <div id="tabs">
+              <div class="tab clickable">
+                <p>General</p>
+              </div>
             </div>
             <div id="bottom">
-              <div id="plus">
+              <div id="plus" class="tab clickable">
                 <p>Add Page</p>
               </div>
-              <div id="state">
+              <div id="state" class="tab clickable">
                 <p>Save/Load State</p>
               </div>
             </div>
