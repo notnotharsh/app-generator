@@ -18,3 +18,32 @@ function controlTabs() {
     tabs.getElementsByClassName("tab")[i].style.height = percent.toString() + "%";
   }
 }
+
+function tabListeners() {
+  var tabs = document.getElementsByClassName("tab");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].setAttribute("onclick", "switchTabs(" + i + ")")
+  }
+}
+
+function switchTabs(tab) {
+  var tabs = document.getElementsByClassName("tab");
+  if (tab == tabs.length - 2) {
+    for (var j = 0; j < tabs.length; j++) {
+      if (j != tab) {
+        tabs[j].classList.remove("clicked");
+      }
+    }
+    document.getElementById("tabs").innerHTML += "<div class=\"tab clickable clicked\"><p>P" + (tabs.length - 2) + "</p></div>";
+    controlTabs();
+    tabListeners();
+  } else {
+    for (var j = 0; j < tabs.length; j++) {
+      if (j == tab) {
+        tabs[j].classList.add("clicked");
+      } else {
+        tabs[j].classList.remove("clicked");
+      }
+    }
+  }
+}

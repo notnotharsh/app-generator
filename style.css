@@ -121,6 +121,11 @@ h1 {
   align-items: center;
 }
 
+.clicked {
+  background-color: #444444;
+  color: #bbbbbb;
+}
+
 .clickable {
   cursor: pointer;
 }

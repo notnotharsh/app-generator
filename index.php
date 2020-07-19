@@ -8,7 +8,7 @@
     <script type="text/javascript" src="script.js"></script>
     <title>App Generator</title>
   </head>
-  <body onload="pageSize(); controlTabs()" onresize="pageSize()">
+  <body onload="pageSize(); controlTabs(); tabListeners()" onresize="pageSize()">
     <div id="page">
       <div id="phone">
       </div>
@@ -17,7 +17,7 @@
         <div id="settings">
           <div id="bar">
             <div id="tabs">
-              <div class="tab clickable">
+              <div class="tab clickable clicked">
                 <p>General</p>
               </div>
             </div>
@@ -29,6 +29,9 @@
                 <p>Save/Load State</p>
               </div>
             </div>
+          </div>
+          <div id="details">
+
           </div>
         </div>
       </div>
