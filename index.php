@@ -8,7 +8,7 @@
     <script type="text/javascript" src="script.js"></script>
     <title>App Generator</title>
   </head>
-  <body onload="pageSize(); controlTabs(); tabListeners()" onresize="pageSize()">
+  <body onload="pageSize(); controlTabs(); tabListeners(); switchTabs(0)" onresize="pageSize()">
     <div id="page">
       <div id="phone">
       </div>

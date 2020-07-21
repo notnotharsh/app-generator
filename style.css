@@ -98,6 +98,7 @@ h1 {
   background-color: #333333;
   height: 100%;
   width: 26.3157895%;
+  float: left;
 }
 
 #tabs {
@@ -133,4 +134,13 @@ h1 {
 .clickable:hover {
   background-color: #bbbbbb;
   color: #333333;
+}
+
+#details {
+  height: 100%;
+  width: 73.68421055%;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
