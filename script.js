@@ -1,3 +1,5 @@
+var appState = {title: "", instructions: [], pages: []};
+
 function pageSize() {
   var width = document.body.clientWidth;
   var height = document.body.clientHeight;
@@ -45,5 +47,37 @@ function switchTabs(tab) {
         tabs[j].classList.remove("clicked");
       }
     }
+  }
+  constructDetails(tab);
+}
+
+function constructDetails(tab) {
+  if (tab == 0) {
+    constructDetailsGeneral();
+  }
+}
+
+function constructDetailsGeneral() {
+  var appName = appState.name;
+  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <span id=\"title\" class=\"edit\" contenteditable=\"true\" onfocusout=\"saveData(false, 0)\">Title</span></p></div>";
+  document.getElementById("details").innerHTML = code;
+}
+
+function saveData(isPage, param) {
+  if (!isPage) {
+    if (param == 0) {
+      appState.title = document.getElementById("title").innerHTML;
+    }
+  }
+}
+
+function banNewLine() {
+  var editables = document.getElementsByClassName("edit");
+  for (var i = 0; i < editables.length; i++) {
+    editables[i].addEventListener("keydown", (evt) => {
+      if (evt.keyCode === 13) {
+        evt.preventDefault();
+      }
+    });
   }
 }
