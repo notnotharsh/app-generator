@@ -5,10 +5,11 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
     <link type="text/css" href="style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script type="text/javascript" src="script.js"></script>
     <title>App Generator</title>
   </head>
-  <body onload="pageSize(); controlTabs(); tabListeners(); switchTabs(0); banNewLine()" onresize="pageSize()">
+  <body onload="pageSize(); controlTabs(); tabListeners(); switchTabs(0)" onresize="pageSize()">
     <div id="page">
       <div id="phone">
       </div>

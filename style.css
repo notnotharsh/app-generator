@@ -143,6 +143,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .heightloader {
@@ -150,4 +151,5 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-basis: 100%;
 }

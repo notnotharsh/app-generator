@@ -55,11 +55,13 @@ function constructDetails(tab) {
   if (tab == 0) {
     constructDetailsGeneral();
   }
+  banNewLine();
+  colorHeightLoaders();
 }
 
 function constructDetailsGeneral() {
   var appName = appState.name;
-  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <span id=\"title\" class=\"edit\" contenteditable=\"true\" onfocusout=\"saveData(false, 0)\">Title</span></p></div>";
+  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <span id=\"title\" class=\"edit\" contenteditable=\"true\" onfocusout=\"saveData(false, 0)\">Title</span></p></div><div class=\"heightloader\" style=\"height: 85%\"><p>Instructions</p></div>";
   document.getElementById("details").innerHTML = code;
 }
 
@@ -79,5 +81,14 @@ function banNewLine() {
         evt.preventDefault();
       }
     });
+  }
+}
+
+function colorHeightLoaders() {
+  var heightloaders = document.getElementsByClassName("heightloader");
+  for (var i = 0; i < heightloaders.length; i++) {
+    if (i % 2 == 1) {
+      heightloaders[i].style.backgroundColor = "#272727";
+    }
   }
 }
