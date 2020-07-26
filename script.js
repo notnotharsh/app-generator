@@ -88,7 +88,7 @@ function colorHeightLoaders() {
   var heightloaders = document.getElementsByClassName("heightloader");
   for (var i = 0; i < heightloaders.length; i++) {
     if (i % 2 == 1) {
-      heightloaders[i].style.backgroundColor = "#272727";
+      heightloaders[i].style.backgroundColor = "#282828";
     }
   }
 }
