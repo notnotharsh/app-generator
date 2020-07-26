@@ -1,4 +1,4 @@
-var appState = {title: "", instructions: [], pages: []};
+var appState = {title: "", instructions: [""], instruction: 0, pages: [], page: 0};
 
 function pageSize() {
   var width = document.body.clientWidth;
@@ -51,24 +51,35 @@ function switchTabs(tab) {
   constructDetails(tab);
 }
 
+function refresh() {
+  tab = appState.page;
+  constructDetails(tab);
+}
+
 function constructDetails(tab) {
   if (tab == 0) {
     constructDetailsGeneral();
+  } else {
+    document.getElementById("details").innerHTML = "";
   }
   banNewLine();
   colorHeightLoaders();
+  colorSliders();
 }
 
 function constructDetailsGeneral() {
-  var appName = appState.name;
-  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <span id=\"title\" class=\"edit\" contenteditable=\"true\" onfocusout=\"saveData(false, 0)\">Title</span></p></div><div class=\"heightloader\" style=\"height: 85%\"><p>Instructions</p></div>";
+  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <input id=\"title\" class=\"edit\" onfocusout=\"saveData(false, true)\" value=\"\" /></div><div class=\"heightloader\" style=\"height: 75%\"><p>Instructions</p><textarea id=\"instructions\" onfocusout=\"saveData(false, false)\"></textarea></div><div class=\"heightloader\" style=\"height: 10%\"><span class=\"slider instruction\"><span class=\"material-icons\">chevron_left</span><span class=\"material-icons\" onclick=\"addSlidePage('instruction')\">add</span><span class=\"material-icons\">chevron_right</span></span></div>";
   document.getElementById("details").innerHTML = code;
+  document.getElementById("title").value = appState.title;
+  switchSlider("instruction", 0);
 }
 
 function saveData(isPage, param) {
   if (!isPage) {
-    if (param == 0) {
-      appState.title = document.getElementById("title").innerHTML;
+    if (param) {
+      appState.title = document.getElementById("title").value;
+    } else {
+      appState.instructions[appState.instruction] = document.getElementById("instructions").value;
     }
   }
 }
@@ -91,4 +102,37 @@ function colorHeightLoaders() {
       heightloaders[i].style.backgroundColor = "#282828";
     }
   }
+}
+
+function colorSliders() {
+  var sliders = document.getElementsByClassName("slider");
+  for (var i = 0; i < sliders.length; i++) {
+    var num = appState[sliders[i].classList.item(1)];
+    var length = appState[sliders[i].classList.item(1) + "s"].length;
+    if (num == 0) {
+      sliders[i].getElementsByTagName("span")[0].classList.add("disabled");
+      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num) + ")");
+    } else {
+      sliders[i].getElementsByTagName("span")[0].classList.remove("disabled");
+      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num - 1) + ")");
+    }
+    if (num == length - 1) {
+      sliders[i].getElementsByTagName("span")[2].classList.add("disabled");
+      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num) + ")");
+    } else {
+      sliders[i].getElementsByTagName("span")[2].classList.remove("disabled");
+      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num + 1) + ")");
+    }
+  }
+}
+
+function switchSlider(ID, page) {
+  appState[ID] = page;
+  document.getElementById(ID + "s").value = appState[ID + "s"][page];
+  colorSliders();
+}
+
+function addSlidePage(ID) {
+  appState[ID + "s"].splice(appState[ID] + 1, 0, "");
+  switchSlider(ID, appState[ID] + 1);
 }

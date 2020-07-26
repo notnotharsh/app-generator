@@ -152,4 +152,46 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-basis: 100%;
+  flex-wrap: wrap;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 40px !important;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  color: #bbbbbb;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+.material-icons.disabled {
+  color: #bbbbbb80;
+  cursor: default;
+}
+
+input, textarea {
+  text-align: center;
+  font-family: 'Inconsolata', monospace;
+  background-color: inherit;
+  border: 1px solid #bbbbbb;
+  padding: 2px;
+  color: #bbbbbb;
+}
+
+textarea {
+  width: 80%;
+  height: 35%;
+  padding: 15% 5%;
+  resize: none;
 }
