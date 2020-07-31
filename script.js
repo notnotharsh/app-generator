@@ -68,10 +68,10 @@ function constructDetails(tab) {
 }
 
 function constructDetailsGeneral() {
-  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <input id=\"title\" class=\"edit\" onfocusout=\"saveData(false, true)\" value=\"\" /></div><div class=\"heightloader\" style=\"height: 75%\"><p>Instructions</p><textarea id=\"instructions\" onfocusout=\"saveData(false, false)\"></textarea></div><div class=\"heightloader\" style=\"height: 10%\"><span class=\"slider instruction\"><span class=\"material-icons\">chevron_left</span><span class=\"material-icons\" onclick=\"addSlidePage('instruction')\">add</span><span class=\"material-icons\">chevron_right</span></span></div>";
+  var code = "<div class=\"heightloader\" style=\"height: 15%\"><p>App Title: <input id=\"title\" class=\"edit\" onfocusout=\"saveData(false, true)\" value=\"\" /></div><div class=\"heightloader\" style=\"height: 75%\"><p>Instructions</p><textarea id=\"instructions\" onfocusout=\"saveData(false, false)\"></textarea></div><div class=\"heightloader\" style=\"height: 10%\"><span class=\"slider instruction\"><span class=\"material-icons\">chevron_left</span><span class=\"material-icons\" onclick=\"addSlidePage('root', 'instruction')\">add</span><span class=\"material-icons\">chevron_right</span></span></div>";
   document.getElementById("details").innerHTML = code;
   document.getElementById("title").value = appState.title;
-  switchSlider("instruction", 0);
+  switchSlider("root", "instruction", 0);
 }
 
 function saveData(isPage, param) {
@@ -111,28 +111,39 @@ function colorSliders() {
     var length = appState[sliders[i].classList.item(1) + "s"].length;
     if (num == 0) {
       sliders[i].getElementsByTagName("span")[0].classList.add("disabled");
-      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num) + ")");
+      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('root', '" + sliders[i].classList.item(1) + "', " + (num) + ")");
     } else {
       sliders[i].getElementsByTagName("span")[0].classList.remove("disabled");
-      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num - 1) + ")");
+      sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('root', '" + sliders[i].classList.item(1) + "', " + (num - 1) + ")");
     }
     if (num == length - 1) {
       sliders[i].getElementsByTagName("span")[2].classList.add("disabled");
-      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num) + ")");
+      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('root', '" + sliders[i].classList.item(1) + "', " + (num) + ")");
     } else {
       sliders[i].getElementsByTagName("span")[2].classList.remove("disabled");
-      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('" + sliders[i].classList.item(1) + "', " + (num + 1) + ")");
+      sliders[i].getElementsByTagName("span")[2].setAttribute("onClick", "switchSlider('root', '" + sliders[i].classList.item(1) + "', " + (num + 1) + ")");
     }
   }
 }
 
-function switchSlider(ID, page) {
-  appState[ID] = page;
-  document.getElementById(ID + "s").value = appState[ID + "s"][page];
-  colorSliders();
+function switchSlider(dir, ID, page) {
+  if (dir === "root") {
+    appState[ID] = page;
+    document.getElementById(ID + "s").value = appState[ID + "s"][page];
+    colorSliders();
+  } else {
+    appState[dir][ID] = page;
+    document.getElementById(ID + "s").value = appState[dir][ID + "s"][page];
+    colorSliders();
+  }
 }
 
-function addSlidePage(ID) {
-  appState[ID + "s"].splice(appState[ID] + 1, 0, "");
-  switchSlider(ID, appState[ID] + 1);
+function addSlidePage(dir, ID) {
+  if (dir === "root") {
+    appState[ID + "s"].splice(appState[ID] + 1, 0, "");
+    switchSlider(dir, ID, appState[ID] + 1);
+  } else {
+    appState[dir][ID + "s"].splice(appState[dir][ID] + 1, 0, "");
+    switchSlider(dir, ID, appState[dir][ID] + 1);
+  }
 }
