@@ -12,6 +12,8 @@
   <body onload="pageSize(); controlTabs(); tabListeners(); switchTabs(0)" onresize="pageSize()">
     <div id="page">
       <div id="phone">
+        <div id="phoneTitle"></div>
+        <div id="body"></div>
       </div>
       <div id="square">
         <h1>App Generator</h1>
@@ -31,8 +33,7 @@
               </div>
             </div>
           </div>
-          <div id="details">
-          </div>
+          <div id="details"></div>
         </div>
       </div>
     </div>

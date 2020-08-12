@@ -79,7 +79,7 @@
   float: right;
 }
 
-h1 {
+#square h1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -194,4 +194,21 @@ textarea {
   height: 35%;
   padding: 15% 5%;
   resize: none;
+}
+
+#phoneTitle {
+  height: 3em;
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#phoneTitle * {
+  margin: 0px;
+  font-weight: 700;
+}
+
+#body {
+  height: calc(100% - 5em);
 }

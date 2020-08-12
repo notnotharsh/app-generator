@@ -54,17 +54,21 @@ function switchTabs(tab) {
 function refresh() {
   tab = appState.page;
   constructDetails(tab);
+  constructPhone(tab);
 }
 
 function constructDetails(tab) {
+  var dir;
   if (tab == 0) {
+    dir = "root"
     constructDetailsGeneral();
   } else {
+    dir = tab.toString();
     document.getElementById("details").innerHTML = "";
   }
   banNewLine();
   colorHeightLoaders();
-  colorSliders();
+  colorSliders(dir);
 }
 
 function constructDetailsGeneral() {
@@ -82,6 +86,7 @@ function saveData(isPage, param) {
       appState.instructions[appState.instruction] = document.getElementById("instructions").value;
     }
   }
+  refresh();
 }
 
 function banNewLine() {
@@ -104,11 +109,16 @@ function colorHeightLoaders() {
   }
 }
 
-function colorSliders() {
+function colorSliders(dir) {
   var sliders = document.getElementsByClassName("slider");
   for (var i = 0; i < sliders.length; i++) {
-    var num = appState[sliders[i].classList.item(1)];
-    var length = appState[sliders[i].classList.item(1) + "s"].length;
+    if (dir === "root") {
+      var num = appState[sliders[i].classList.item(1)];
+      var length = appState[sliders[i].classList.item(1) + "s"].length;
+    } else {
+      var num = appState.pages[parseInt(dir) - 1][sliders[i].classList.item(1)];
+      var length = appState.pages[parseInt(dir) - 1][sliders[i].classList.item(1) + "s"].length;
+    }
     if (num == 0) {
       sliders[i].getElementsByTagName("span")[0].classList.add("disabled");
       sliders[i].getElementsByTagName("span")[0].setAttribute("onClick", "switchSlider('root', '" + sliders[i].classList.item(1) + "', " + (num) + ")");
@@ -130,12 +140,11 @@ function switchSlider(dir, ID, page) {
   if (dir === "root") {
     appState[ID] = page;
     document.getElementById(ID + "s").value = appState[ID + "s"][page];
-    colorSliders();
   } else {
-    appState[dir][ID] = page;
-    document.getElementById(ID + "s").value = appState[dir][ID + "s"][page];
-    colorSliders();
+    appState.pages[parseInt(dir) - 1][ID] = page;
+    document.getElementById(ID + "s").value = appState.pages[parseInt(dir) - 1][ID + "s"][page];
   }
+  colorSliders(dir);
 }
 
 function addSlidePage(dir, ID) {
@@ -143,7 +152,17 @@ function addSlidePage(dir, ID) {
     appState[ID + "s"].splice(appState[ID] + 1, 0, "");
     switchSlider(dir, ID, appState[ID] + 1);
   } else {
-    appState[dir][ID + "s"].splice(appState[dir][ID] + 1, 0, "");
-    switchSlider(dir, ID, appState[dir][ID] + 1);
+    appState.pages[parseInt(dir) - 1][ID + "s"].splice(appState.pages[parseInt(dir) - 1][ID] + 1, 0, "");
+    switchSlider(dir, ID, appState.pages[parseInt(dir) - 1][ID] + 1);
   }
+}
+
+function constructPhone(tab) {
+  constructPhoneTitle();
+}
+
+function constructPhoneTitle() {
+  var title = appState.title;
+  var code = "<p>" + title + "</p>"
+  document.getElementById("phoneTitle").innerHTML = code;
 }
